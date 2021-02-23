@@ -1,10 +1,9 @@
 import 'package:coast/coast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-
 import 'package:get/get.dart';
 import 'package:marcopolo/app/modules/animatedHome/controllers/animated_home_controller.dart';
-
+import 'package:marcopolo/app/theme/TextTheme.dart';
 import '../controllers/home_hero_controller.dart';
 
 class HomeHeroView extends GetView<HomeHeroController> {
