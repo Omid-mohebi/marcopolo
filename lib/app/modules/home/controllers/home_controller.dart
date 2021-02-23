@@ -13,6 +13,7 @@ class HomeController extends GetxController {
     // Beach(builder: (context) => Zoutelande()),
   ];
   final coastController = CoastController();
+  // Get.put(t);
   final count = 0.obs;
   @override
   void onInit() {
