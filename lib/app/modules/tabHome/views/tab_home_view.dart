@@ -6,9 +6,19 @@ import 'package:marcopolo/app/modules/tabHome/views/circleIndicator.dart';
 import 'package:marcopolo/app/theme/AppColors.dart';
 import '../controllers/tab_home_controller.dart';
 
-class TabHomeView extends GetView<TabHomeController> {
+class TabHomeView extends StatefulWidget {
+  @override
+  _TabHomeViewState createState() => _TabHomeViewState();
+}
+
+class _TabHomeViewState extends State<TabHomeView>
+    with AutomaticKeepAliveClientMixin<TabHomeView> {
+  var controller = Get.put(TabHomeController());
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -104,6 +114,9 @@ class TabHomeView extends GetView<TabHomeController> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 // Container(
 //               height: 90,

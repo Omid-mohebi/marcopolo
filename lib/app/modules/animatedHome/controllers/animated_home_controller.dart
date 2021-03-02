@@ -19,7 +19,7 @@ class AnimatedHomeController extends GetxController
   void onInit() {
     super.onInit();
     controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 350),
       vsync: this,
     );
     offsetAnimation = Tween<Offset>(
@@ -28,7 +28,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
     soffsetAnimation = Tween<Offset>(
@@ -37,7 +37,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
     toffsetAnimation = Tween<Offset>(
@@ -46,7 +46,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
     foffsetAnimation = Tween<Offset>(
@@ -55,7 +55,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
   }
