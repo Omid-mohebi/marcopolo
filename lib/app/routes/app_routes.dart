@@ -8,6 +8,9 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const ANIMATED_HOME = _Paths.ANIMATED_HOME;
   static const HOME_HERO = _Paths.HOME_HERO;
+  static const LOGIN = _Paths.LOGIN;
+  static const PROFILE_SETTING = _Paths.PROFILE_SETTING;
+  static const PROFILE_SETTING_NOT_LOGIN = _Paths.PROFILE_SETTING_NOT_LOGIN;
 }
 
 abstract class _Paths {
@@ -17,4 +20,7 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const ANIMATED_HOME = '/animated-home';
   static const HOME_HERO = '/home-hero';
+  static const LOGIN = '/login';
+  static const PROFILE_SETTING = '/profile-setting';
+  static const PROFILE_SETTING_NOT_LOGIN = '/profile-setting-not-login';
 }

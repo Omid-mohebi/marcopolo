@@ -70,7 +70,7 @@ class AppTextTheme {
 //   }
   static TextStyle normalBText() {
     return Get.textTheme.bodyText1.copyWith(
-      color: Colors.white,
+      color: Colors.black,
       fontSize: 16,
       fontWeight: FontWeight.bold,
     );
@@ -81,6 +81,14 @@ class AppTextTheme {
       color: Colors.white,
       fontSize: 25,
       // fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle superLargBText() {
+    return Get.textTheme.bodyText1.copyWith(
+      color: Colors.black,
+      fontSize: 27,
+      fontWeight: FontWeight.w500,
     );
   }
 }
