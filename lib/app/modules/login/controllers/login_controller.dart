@@ -21,17 +21,16 @@ class LoginController extends GetxController {
     ).animate(
       CurvedAnimation(
         parent: Get.find<ProfileController>().controller,
-        curve: Curves.easeOutBack,
+        curve: Curves.easeInBack,
       ),
     );
     soffsetAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(0, 1),
+      end: const Offset(0, -1),
     ).animate(
       CurvedAnimation(
-        parent: Get.find<ProfileController>().controller,
-        curve: Curves.easeOutBack,
-      ),
+          parent: Get.find<ProfileController>().controller,
+          curve: Curves.easeInBack),
     );
   }
 

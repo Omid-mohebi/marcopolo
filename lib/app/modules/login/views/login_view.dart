@@ -24,42 +24,28 @@ class LoginView extends GetView<LoginController> {
         // physics: BouncingScrollPhysics(),
         children: [
           // Spacer(),
-          SlideTransition(
-            position: controller.offsetAnimation,
-            child: Text(
-              'Please Select One of The Sign-in\n\nMethods below!',
-              style: AppTextTheme.normalBText().copyWith(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: SlideTransition(
+              position: controller.soffsetAnimation,
+              child: Text(
+                'Please Select One of The Sign-in\n\nMethods below!',
+                style: AppTextTheme.normalBText().copyWith(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
           ),
-          // Spacer(
-          //   flex: 2,
-          // ),
+          SizedBox(
+            height: 20,
+          ),
           Column(
-            // crossAxisAlignment: ,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              // SlideTransition(
-              //   position: controller.soffsetAnimation,
-              //   child: FatButton(
-              //     onTap: () {
-              //       print('taped');
-              //       AuthController.to.signInWithGoogle();
-              //     },
-              //     text: 'Google',
-              //     heading: Icon(
-              //       AntDesign.google,
-              //       size: 45,
-              //       color: AppColors.pink,
-              //     ),
-              //   ),
-              // ),
-              // Spacer(),
               SlideTransition(
-                position: controller.soffsetAnimation,
+                position: controller.offsetAnimation,
                 child: FatButton(
                   onTap: () {
                     print('taped');
@@ -74,7 +60,7 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               SlideTransition(
-                position: controller.soffsetAnimation,
+                position: controller.offsetAnimation,
                 child: FatButton(
                   onTap: () {
                     AuthController.to.signInWithFacebook();
@@ -87,25 +73,25 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
-              SlideTransition(
-                position: controller.soffsetAnimation,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SlideTransition(
+                  position: controller.offsetAnimation,
                   child: TextButton(
-                    onPressed: () {
-                      Get.find<ProfileController>().controller.reverse();
+                    onPressed: () async {
+                      Get.find<ProfileController>().controller.forward();
                       Timer(
-                        Duration(milliseconds: 150),
+                        Duration(milliseconds: 240),
                         () {
                           Get.find<ProfileController>()
                               .pageController
                               .animateToPage(1,
                                   duration: Duration(milliseconds: 1),
                                   curve: Curves.ease);
+
                           Get.find<ProfileSettingNotLoginController>()
                               .controller
                               .reverse();
-                          // Get.find<>().
                         },
                       );
                     },

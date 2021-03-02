@@ -1,10 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:marcopolo/app/modules/home/bindings/home_binding.dart';
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays([]);
   // List<Widget> screens;
@@ -16,6 +17,7 @@ void main() {
   // ];
   var showBNB = true.obs;
   Get.put(showBNB, tag: "global_bool", permanent: true);
+  await Firebase.initializeApp();
   runApp(
     GetMaterialApp(
       debugShowCheckedModeBanner: false,

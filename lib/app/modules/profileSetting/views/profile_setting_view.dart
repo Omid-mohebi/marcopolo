@@ -32,8 +32,19 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
           Center(
             child: ClipOval(
               child: Image.network(
-                FirebaseAuth.instance.currentUser.photoURL ??
-                    'assets/images/1.jpg',
+                FirebaseAuth.instance.currentUser.photoURL,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes
+                          : null,
+                    ),
+                  );
+                },
                 width: 130,
                 height: 130,
                 fit: BoxFit.cover,

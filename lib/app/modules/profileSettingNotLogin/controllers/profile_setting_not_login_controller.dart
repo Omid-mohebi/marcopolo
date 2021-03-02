@@ -17,7 +17,7 @@ class ProfileSettingNotLoginController extends GetxController
     controller = AnimationController(
       lowerBound: 0,
       upperBound: 1,
-      duration: const Duration(milliseconds: 250),
+      duration: const Duration(milliseconds: 300),
       vsync: this,
     );
     controller.addListener(() {
@@ -27,20 +27,20 @@ class ProfileSettingNotLoginController extends GetxController
     });
     offsetAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(0, 2),
+      end: const Offset(0, 1.5),
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutQuint,
+        curve: Curves.easeInBack,
       ),
     );
     soffsetAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: const Offset(-2, 0),
+      end: const Offset(-1.5, 0),
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutQuint,
+        curve: Curves.easeInBack,
       ),
     );
   }

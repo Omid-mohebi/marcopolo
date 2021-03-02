@@ -32,7 +32,7 @@ class ProfileController extends GetxController
   void onReady() {
     super.onReady();
     controller = AnimationController(
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 300),
       vsync: this,
     );
   }

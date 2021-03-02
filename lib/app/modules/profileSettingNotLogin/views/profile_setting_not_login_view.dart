@@ -40,6 +40,9 @@ class ProfileSettingNotLoginView
             ),
           ),
           // Spacer(),
+          SizedBox(
+            height: 10,
+          ),
           SlideTransition(
               position: controller.offsetAnimation,
               child: FatButton(text: 'Language')),
@@ -55,13 +58,18 @@ class ProfileSettingNotLoginView
               text: 'Login',
               buttonColor: AppColors.pink,
               textColor: Colors.white,
-              onTap: () {
-                Timer(Duration(milliseconds: 100), () {
+              onTap: () async {
+                // Get.find<ProfileSettingNotLoginController>()
+                //     .controller
+                //     .forward();
+                controller.controller.forward();
+                await Get.find<ProfileController>().controller.forward();
+                Timer(Duration(milliseconds: 80), () {
                   Get.find<ProfileController>().pageController.animateToPage(0,
                       duration: Duration(milliseconds: 1), curve: Curves.ease);
                 });
-                Get.find<ProfileController>().controller.forward();
-                controller.controller.forward();
+
+                Get.find<ProfileController>().controller.reverse();
               },
             ),
           ),

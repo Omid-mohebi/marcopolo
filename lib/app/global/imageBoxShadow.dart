@@ -23,16 +23,26 @@ class ImageBoxShadow extends StatelessWidget {
         Get.find<AnimatedHomeController>().heroTag.value = myTag;
         Get.find<AnimatedHomeController>().controller.forward();
         Timer(
-          Duration(milliseconds: 100),
-          () => {
+          Duration(milliseconds: 1),
+          () {
+            Get.find<AnimatedHomeController>().secondPage.value = true;
             Get.find<HomeController>().coastController.animateTo(
                 beach: 1,
                 duration: Duration(milliseconds: 400),
-                curve: Curves.easeInOut)
+                curve: Curves.easeInOut);
           },
         );
-
-        // print(Get.find<AnimatedHomeController>().heroTag);
+        // Future<Category> getNewsByCat(String cat) async {
+        //   http.Response response = await http.get(
+        //       'http://newsapi.org/v2/top-headlines?category=$cat&apiKey=58ee158f48804185ae9c657c06de5b00');
+        //   if (response.statusCode == 200) {
+        //     var resbody = jsonDecode(response.body);
+        //     Category myRxCategory = Category.fromJson(resbody);
+        //     print(myRxCategory);
+        //     return myRxCategory;
+        //   }
+        //   print('massion faild');
+        // }
       },
       child: Stack(
         children: [
@@ -40,7 +50,7 @@ class ImageBoxShadow extends StatelessWidget {
             height: double.infinity,
             child: Image.asset(
               imgUrl,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.cover,
             ),
           ),
           Container(
@@ -63,7 +73,7 @@ class ImageBoxShadow extends StatelessWidget {
             left: 10,
             child: Text(
               title,
-              style: AppTextTheme.normalBText(),
+              style: AppTextTheme.normalBText().copyWith(color: Colors.white),
             ),
           )
         ],
