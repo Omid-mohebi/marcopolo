@@ -6,9 +6,13 @@ class HomeHeroController extends GetxController {
   HomeController homeController = Get.find<HomeController>();
   AnimatedHomeController animatedHomeController =
       Get.find<AnimatedHomeController>();
+  List<String> droplist;
+  var dropdownValue = ''.obs;
   final count = 0.obs;
   @override
   void onInit() {
+    droplist = ['Price', 'City', 'Star', 'Status'];
+    dropdownValue.value = droplist[0];
     super.onInit();
   }
 
