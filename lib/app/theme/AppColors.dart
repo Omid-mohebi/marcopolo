@@ -12,4 +12,6 @@ class AppColors {
   // static const superRed = Color(0xffFF5B43);
   static const pink = Color(0xffFE0056);
   static const decative = Color(0xff919191);
+  static const weakDecative = Color(0xffe8e8e8);
+  static const strongDecative = Color(0xff908f8f);
 }
