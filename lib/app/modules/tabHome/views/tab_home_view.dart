@@ -1,14 +1,28 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:marcopolo/app/modules/animatedHome/controllers/animated_home_controller.dart';
 import 'package:marcopolo/app/modules/tabHome/views/circleIndicator.dart';
 import 'package:marcopolo/app/theme/AppColors.dart';
+import 'package:marcopolo/app/theme/TextTheme.dart';
 import '../controllers/tab_home_controller.dart';
 
-class TabHomeView extends GetView<TabHomeController> {
+class TabHomeView extends StatefulWidget {
+  @override
+  _TabHomeViewState createState() => _TabHomeViewState();
+}
+
+class _TabHomeViewState extends State<TabHomeView>
+    with AutomaticKeepAliveClientMixin<TabHomeView> {
+  var controller = Get.put(TabHomeController());
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -64,32 +78,35 @@ class TabHomeView extends GetView<TabHomeController> {
         body: Column(
           children: [
             Expanded(
-              // height: 100,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Row(
-                  // crossAxisAlignment: CrossAxisAlignment.,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    //TODO add svg
-                    Text(
-                      'MarcoPolo',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                    Expanded(child: Container()),
-                    //TODO add khaled icon
-                    IconButton(
-                      icon: Icon(
-                        MaterialCommunityIcons.chat_outline,
-                        size: 35,
+              child: SlideTransition(
+                position:
+                    Get.find<AnimatedHomeController>().anothersOffsetAnimation,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //TODO add svg
+                      Text(
+                        'MarcoPolo',
+                        style: TextStyle(fontSize: 30),
                       ),
-                      //TODO: add functionalety
-                      onPressed: () {
-                        Get.find<RxBool>(tag: 'global_bool').value =
-                            !Get.find<RxBool>(tag: 'global_bool').value;
-                      },
-                    )
-                  ],
+                      Expanded(child: Container()),
+                      //TODO add khaled icon
+                      IconButton(
+                        icon: Icon(
+                          MaterialCommunityIcons.chat_outline,
+                          size: 35,
+                        ),
+                        //TODO: add functionalety
+                        onPressed: () {
+                          // Get.find<RxBool>(tag: 'global_bool').value =
+                          //     !Get.find<RxBool>(tag: 'global_bool').value;
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -104,64 +121,7 @@ class TabHomeView extends GetView<TabHomeController> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
-// Container(
-//               height: 90,
-//               color: Colors.amber,
-//               child: Padding(
-//                 padding: const EdgeInsets.symmetric(horizontal: 50),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     GestureDetector(
-//                       onTap: () {
-//                         selectedIndex.value = 0;
-//                       },
-//                       child: Expanded(
-//                         child: Obx(
-//                           () => Icon(
-//                             Foundation.home,
-//                             size: 30,
-//                             color: selectedIndex.value == 0
-//                                 ? Colors.black
-//                                 : AppColors.decative,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     GestureDetector(
-//                       onTap: () {
-//                         selectedIndex.value = 1;
-//                       },
-//                       child: Expanded(
-//                         child: Obx(
-//                           () => Icon(
-//                             Foundation.bookmark,
-//                             size: 30,
-//                             color: selectedIndex.value == 1
-//                                 ? Colors.black
-//                                 : AppColors.decative,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     GestureDetector(
-//                       onTap: () {
-//                         selectedIndex.value = 2;
-//                       },
-//                       child: Expanded(
-//                         child: Obx(
-//                           () => Icon(
-//                             Ionicons.md_person,
-//                             size: 30,
-//                             color: selectedIndex.value == 2
-//                                 ? Colors.black
-//                                 : AppColors.decative,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
