@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "476850839420",
+    "project_id": "marcopolo-e0c3d",
+    "storage_bucket": "marcopolo-e0c3d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476850839420:android:88d8f7724145026d294ef9",
+        "android_client_info": {
+          "package_name": "com.polo.marcopolo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476850839420-n8q7ung9nr3f46bk75gelbrdcr3gp358.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.polo.marcopolo",
+            "certificate_hash": "f002fc4dab37bd4dace03bb86175a9a14af39d29"
+          }
+        },
+        {
+          "client_id": "476850839420-48qo7lsr0ecpufggotgb36138h30hs0p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAdqfwecpC0ELTbYvSJQLAeowXNkQIPRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476850839420-48qo7lsr0ecpufggotgb36138h30hs0p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
