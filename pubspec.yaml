@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  dio: 3.0.10
   get: 3.25.4
   flutter:
     sdk: flutter
@@ -33,6 +34,12 @@ dependencies:
   carousel_slider: ^3.0.0
   flutter_sidekick: ^0.1.3
   coast: ^1.0.2
+  firebase_auth: ^0.20.1
+  firebase_core: ^0.7.0
+  google_sign_in: ^4.5.9
+  flutter_facebook_auth: ^2.0.2
+  logger: 0.9.4
+  flutter_easyloading: ^3.0.0
   
 
 dev_dependencies:
