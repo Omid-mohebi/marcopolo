@@ -5,11 +5,15 @@ import 'package:marcopolo/app/modules/home/controllers/home_controller.dart';
 class AnimatedHomeController extends GetxController
     with SingleGetTickerProviderMixin {
   AnimationController controller;
+  AnimationController secondController;
   Animation<Offset> offsetAnimation;
   Animation<Offset> soffsetAnimation;
   Animation<Offset> toffsetAnimation;
   Animation<Offset> foffsetAnimation;
+  Animation<Offset> anotherOffsetAnimation;
+  Animation<Offset> anothersOffsetAnimation;
   var secondPage = false.obs;
+  var secondPageAnimation = false.obs;
   String selectedImg = '';
   String selectedText = '';
   var heroTag = ''.obs;
@@ -19,7 +23,11 @@ class AnimatedHomeController extends GetxController
   void onInit() {
     super.onInit();
     controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 350),
+      vsync: this,
+    );
+    secondController = AnimationController(
+      duration: const Duration(milliseconds: 250),
       vsync: this,
     );
     offsetAnimation = Tween<Offset>(
@@ -28,7 +36,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
     soffsetAnimation = Tween<Offset>(
@@ -37,7 +45,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
     toffsetAnimation = Tween<Offset>(
@@ -46,7 +54,7 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
       ),
     );
     foffsetAnimation = Tween<Offset>(
@@ -55,7 +63,25 @@ class AnimatedHomeController extends GetxController
     ).animate(
       CurvedAnimation(
         parent: controller,
-        curve: Curves.easeInOutBack,
+        curve: Curves.easeInOutExpo,
+      ),
+    );
+    anotherOffsetAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0, -7),
+    ).animate(
+      CurvedAnimation(
+        parent: secondController,
+        curve: Curves.linear,
+      ),
+    );
+    anothersOffsetAnimation = Tween<Offset>(
+      begin: Offset.zero,
+      end: const Offset(0, -1.3),
+    ).animate(
+      CurvedAnimation(
+        parent: secondController,
+        curve: Curves.linear,
       ),
     );
   }

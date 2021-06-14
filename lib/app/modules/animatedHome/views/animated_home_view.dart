@@ -1,25 +1,46 @@
+import 'dart:async';
+
 import 'package:coast/coast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:get/get.dart';
+import 'package:marcopolo/app/global/fatButton.dart';
 import 'package:marcopolo/app/global/imageBoxShadow.dart';
 import 'package:marcopolo/app/modules/home/views/slider.dart';
+import 'package:marcopolo/app/routes/app_pages.dart';
 import 'package:marcopolo/app/theme/AppColors.dart';
 import 'package:marcopolo/app/theme/TextTheme.dart';
 
 import '../controllers/animated_home_controller.dart';
 
-class AnimatedHomeView extends GetView<AnimatedHomeController> {
+class AnimatedHomeView extends StatefulWidget {
+  @override
+  _AnimatedHomeViewState createState() => _AnimatedHomeViewState();
+}
+
+class _AnimatedHomeViewState extends State<AnimatedHomeView>
+    with AutomaticKeepAliveClientMixin<AnimatedHomeView> {
+  var controller = Get.put(AnimatedHomeController());
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SlideTransition(
-              position: controller.foffsetAnimation, child: CarouselDemo()),
+          Obx(() => AnimatedOpacity(
+                opacity: controller.secondPage.value ? 0 : 1,
+                duration: Duration(
+                  milliseconds:
+                      controller.secondPageAnimation.value ? 250 : 100,
+                ),
+                child: SlideTransition(
+                    position: controller.foffsetAnimation,
+                    child: CarouselDemo()),
+              )),
           SizedBox(
             height: 15,
           ),
@@ -43,15 +64,25 @@ class AnimatedHomeView extends GetView<AnimatedHomeController> {
                               ),
                             )
                           : Expanded(
-                              child: SlideTransition(
-                                position: controller.soffsetAnimation,
-                                child: ImageBoxShadow(
-                                  myTag: '1',
-                                  title: 'Hotels',
-                                  imgUrl: 'assets/images/8.jpg',
-                                  // homeController: controller,
-                                ),
-                              ),
+                              child: Obx(() => AnimatedOpacity(
+                                    opacity:
+                                        controller.secondPage.value ? 0 : 1,
+                                    duration: Duration(
+                                      milliseconds:
+                                          controller.secondPageAnimation.value
+                                              ? 250
+                                              : 100,
+                                    ),
+                                    child: SlideTransition(
+                                      position: controller.soffsetAnimation,
+                                      child: ImageBoxShadow(
+                                        myTag: '1',
+                                        title: 'Hotels',
+                                        imgUrl: 'assets/images/8.jpg',
+                                        // homeController: controller,
+                                      ),
+                                    ),
+                                  )),
                             ),
                       SizedBox(
                         width: 15,
@@ -69,15 +100,25 @@ class AnimatedHomeView extends GetView<AnimatedHomeController> {
                               ),
                             )
                           : Expanded(
-                              child: SlideTransition(
-                                position: controller.offsetAnimation,
-                                child: ImageBoxShadow(
-                                  myTag: '2',
-                                  title: 'Resturants',
-                                  imgUrl: 'assets/images/6.jpg',
-                                  // homeController: controller,
-                                ),
-                              ),
+                              child: Obx(() => AnimatedOpacity(
+                                    opacity:
+                                        controller.secondPage.value ? 0 : 1,
+                                    duration: Duration(
+                                      milliseconds:
+                                          controller.secondPageAnimation.value
+                                              ? 250
+                                              : 100,
+                                    ),
+                                    child: SlideTransition(
+                                      position: controller.offsetAnimation,
+                                      child: ImageBoxShadow(
+                                        myTag: '2',
+                                        title: 'Resturants',
+                                        imgUrl: 'assets/images/6.jpg',
+                                        // homeController: controller,
+                                      ),
+                                    ),
+                                  )),
                             ),
                     ],
                   ),
@@ -106,15 +147,24 @@ class AnimatedHomeView extends GetView<AnimatedHomeController> {
                             ),
                           )
                         : Expanded(
-                            child: SlideTransition(
-                              position: controller.soffsetAnimation,
-                              child: ImageBoxShadow(
-                                myTag: '3',
-                                title: 'Tours',
-                                imgUrl: 'assets/images/3.jpg',
-                                // homeController: controller,
-                              ),
-                            ),
+                            child: Obx(() => AnimatedOpacity(
+                                  opacity: controller.secondPage.value ? 0 : 1,
+                                  duration: Duration(
+                                    milliseconds:
+                                        controller.secondPageAnimation.value
+                                            ? 250
+                                            : 100,
+                                  ),
+                                  child: SlideTransition(
+                                    position: controller.soffsetAnimation,
+                                    child: ImageBoxShadow(
+                                      myTag: '3',
+                                      title: 'Tours',
+                                      imgUrl: 'assets/images/3.jpg',
+                                      // homeController: controller,
+                                    ),
+                                  ),
+                                )),
                           ),
                     SizedBox(
                       width: 15,
@@ -132,13 +182,24 @@ class AnimatedHomeView extends GetView<AnimatedHomeController> {
                             ),
                           )
                         : Expanded(
-                            child: SlideTransition(
-                              position: controller.offsetAnimation,
-                              child: ImageBoxShadow(
-                                myTag: '4',
-                                title: 'Trip Guide',
-                                imgUrl: 'assets/images/9.jpg',
-                                // homeController: controller,
+                            child: Obx(
+                              () => AnimatedOpacity(
+                                opacity: controller.secondPage.value ? 0 : 1,
+                                duration: Duration(
+                                  milliseconds:
+                                      controller.secondPageAnimation.value
+                                          ? 250
+                                          : 100,
+                                ),
+                                child: SlideTransition(
+                                  position: controller.offsetAnimation,
+                                  child: ImageBoxShadow(
+                                    myTag: '4',
+                                    title: 'Trip Guide',
+                                    imgUrl: 'assets/images/9.jpg',
+                                    // homeController: controller,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -148,26 +209,44 @@ class AnimatedHomeView extends GetView<AnimatedHomeController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-            child: SlideTransition(
-              position: controller.toffsetAnimation,
-              child: Container(
-                height: 80,
-                color: AppColors.pink,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Start a Trip',
-                      style: AppTextTheme.largBText(),
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            child: Obx(
+              () => AnimatedOpacity(
+                opacity: controller.secondPage.value ? 0 : 1,
+                duration: Duration(
+                  milliseconds:
+                      controller.secondPageAnimation.value ? 250 : 100,
+                ),
+                child: SlideTransition(
+                  position: controller.secondPageAnimation.value
+                      ? controller.anotherOffsetAnimation
+                      : controller.toffsetAnimation,
+                  child: FatButton(
+                    onTap: () {
+                      controller.secondPageAnimation.value = true;
+                      controller.secondController.forward();
+                      Timer(Duration(milliseconds: 250), () {
+                        controller.secondPage.value = true;
+                      });
+                      Get.toNamed(Routes.START_TRIP);
+                    },
+                    buttonColor: AppColors.pink,
+                    textWidget: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Start a Trip',
+                          style: AppTextTheme.largBText(),
+                        ),
+                        Icon(
+                          Entypo.chevron_right,
+                          color: Colors.white,
+                          size: 37,
+                        ),
+                      ],
                     ),
-                    Icon(
-                      Entypo.chevron_right,
-                      color: Colors.white,
-                      size: 37,
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -176,4 +255,7 @@ class AnimatedHomeView extends GetView<AnimatedHomeController> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
