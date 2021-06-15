@@ -50,6 +50,7 @@ class LoginView extends GetView<LoginController> {
                   onTap: () {
                     print('taped');
                     AuthController.to.signInWithGoogle();
+                    
                   },
                   text: 'Google',
                   heading: Icon(

@@ -1,12 +1,8 @@
 import 'dart:async';
 import 'dart:developer';
-// import 'package:diet_app/app/routes/app_pages.dart';
-// import 'package:diet_app/app/utils/AppGetDialog.dart';
-// import 'package:diet_app/app/utils/exception_handler/FirebaseAuthExceptionHandler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_easyloading/flutter_easyloading.dart';
-// import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
@@ -64,7 +60,7 @@ class AuthController extends GetxController {
   // User registration using phone
 
   Future<void> signInWithGoogle({bool forceShowAllAccounts = false}) async {
-    // EasyLoading.show();
+    EasyLoading.show();
     var isSiginedToGoogle = await GoogleSignIn().isSignedIn();
     if (isSiginedToGoogle) {
       await GoogleSignIn().disconnect();
@@ -76,7 +72,7 @@ class AuthController extends GetxController {
       print("blaaaaaaaaa");
     }).catchError((e) {
       print("Error 0xFF000000"); //network error perhabs
-      // EasyLoading.dismiss();
+      EasyLoading.dismiss();
       AppGetDialog.show(
           middleText:
               "Something unexpected happend, check your internet connection and retry.\nError 0xFF000000");
@@ -87,7 +83,7 @@ class AuthController extends GetxController {
         await googleUser?.authentication;
 
     if (googleAuth == null) {
-      // EasyLoading.dismiss();
+      EasyLoading.dismiss();
       return;
     }
     // Create a new credential
@@ -98,7 +94,7 @@ class AuthController extends GetxController {
 
     // Once signed in, return the UserCredential
     await firebaseAuth.signInWithCredential(credential).then((uc) {
-      // EasyLoading.dismiss();
+      EasyLoading.dismiss();
       //!
       // Get.offAllNamed(Routes.afterLoggedIn);
       Get.find<ProfileSettingController>().nameAsign();
@@ -115,7 +111,7 @@ class AuthController extends GetxController {
       });
     }).catchError((e) {
       print("e3");
-      // EasyLoading.dismiss();
+      EasyLoading.dismiss();
       AppGetDialog.show(
           middleText:
               "Something unExpected happend, sorry for that.\nError 0xFF000001");
@@ -123,9 +119,9 @@ class AuthController extends GetxController {
   }
 
   Future<void> signInWithFacebook() async {
-    // EasyLoading.show();
-    // await signOut();
-    // await FacebookAuth.instance.logOut();
+    EasyLoading.show();
+    await signOut();
+    await FacebookAuth.instance.logOut();
     try {
       // Trigger the sign-in flow
       final AccessToken result = await FacebookAuth.instance.login();
@@ -138,7 +134,7 @@ class AuthController extends GetxController {
       await FirebaseAuth.instance
           .signInWithCredential(facebookAuthCredential)
           .then((uc) async {
-        // EasyLoading.dismiss();
+        EasyLoading.dismiss();
         //!
         Get.find<ProfileSettingController>().nameAsign();
         Get.find<ProfileController>().pageController.animateToPage(2,
@@ -154,11 +150,11 @@ class AuthController extends GetxController {
         });
       });
     } on FacebookAuthException catch (e) {
-      // EasyLoading.dismiss();
+      EasyLoading.dismiss();
       FirebaseAuthExceptionHandler.handleFacebookAuthException(e);
       Logger().e(e.message, "fb error.");
     } catch (e) {
-      // EasyLoading.dismiss();
+      EasyLoading.dismiss();
       AppGetDialog.show(middleText: "Unknown login error");
       Logger().e(e.message, "unknown facebook error.");
     }
@@ -166,6 +162,7 @@ class AuthController extends GetxController {
 
   // Sign out
   Future<void> signOut() async {
+    EasyLoading.show();
     // await GetStorage().erase();
     // await Get.find<Box<dynamic>>(tag: "cart_box").clear();
     // await Get.find<Box<dynamic>>(tag: "user_box").clear();

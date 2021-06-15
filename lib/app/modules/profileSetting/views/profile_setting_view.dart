@@ -91,6 +91,7 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
                   Get.find<ProfileController>().pageController.animateToPage(1,
                       duration: Duration(milliseconds: 1), curve: Curves.ease));
               Get.find<ProfileSettingNotLoginController>().controller.reverse();
+              EasyLoading.dismiss();
             },
           ),
         ],
